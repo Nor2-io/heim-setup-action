@@ -1,0 +1,30 @@
+name: heim-setup
+description: Setup the heim toolkit for github actions
+author: NorNor
+
+# Add your action's branding here. This will appear on the GitHub Marketplace.
+branding:
+  icon: code
+  color: purple
+
+# Define your inputs here.
+inputs:
+  version:
+    description: Version to install
+    required: true
+    default: 'current'
+
+# Define your outputs here.
+outputs:
+  heimHome:
+    description: Value of the HEIM_HOME env
+  bin:
+    description: Path to the heim bin folder
+  runtime:
+    description: Path to heim-runtime
+  cli:
+    description: Path to heim-cli
+
+runs:
+  using: node24
+  main: dist/index.js
