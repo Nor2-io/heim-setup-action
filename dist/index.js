@@ -32633,7 +32633,7 @@ class HeimDist {
         const filename = `heim_${version.raw}_${arch}_${platform}`;
         const file = platform === 'windows' ? `${filename}.zip` : `${filename}.tar.gz`;
         const major = version.major;
-        const downloadUrl = `${this.baseUrl}/download?file=${file}&major=v${major}`;
+        const downloadUrl = `${this.baseUrl}/release/download?file=${file}&major=v${major}`;
         return {
             version: version,
             resolvedVersion: version.raw,

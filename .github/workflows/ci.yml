@@ -56,8 +56,6 @@ jobs:
       - name: Test Local Action
         id: test-action
         uses: ./
-        env:
-          ACTIONS_STEP_DEBUG: true
         with:
           version: '1.1.1'
 

@@ -134,7 +134,7 @@ export class HeimDist {
     const file: string =
       platform === 'windows' ? `${filename}.zip` : `${filename}.tar.gz`
     const major = version.major
-    const downloadUrl = `${this.baseUrl}/download?file=${file}&major=v${major}`
+    const downloadUrl = `${this.baseUrl}/release/download?file=${file}&major=v${major}`
 
     return <HeimInfo>{
       version: version,
