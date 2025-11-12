@@ -57,8 +57,12 @@ jobs:
         id: test-action
         uses: ./
         with:
-          milliseconds: 2000
+          version: '1.1.1'
 
       - name: Print Output
         id: output
-        run: echo "${{ steps.test-action.outputs.time }}"
+        run: |
+          echo "heimHome: ${{ steps.test-action.outputs.heimHome }}"
+          echo "bin: ${{ steps.test-action.outputs.heimHome }}"
+          echo "runtime: ${{ steps.test-action.outputs.heimHome }}"
+          echo "cli: ${{ steps.test-action.outputs.heimHome }}"
