@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable jest/no-conditional-expect */
+
 import { jest } from '@jest/globals'
 
 import * as core from '../__fixtures__/core.js'
@@ -7,7 +10,7 @@ import { HTTPError } from '@actions/tool-cache'
 import * as hc from '@actions/http-client'
 // import * as hc from '../__fixtures__/http-client.js';
 
-import osm, { arch, platform, version } from 'os'
+import osm, { arch, platform } from 'os'
 import path from 'path'
 
 jest.unstable_mockModule('@actions/core', () => core)
@@ -21,12 +24,11 @@ import dataJson from './data/data.json'
 import { HeimPaths, IHeimVersions } from '../src/dist.js'
 import { TypedResponse } from '@actions/http-client/lib/interfaces.js'
 
-import semver from 'semver'
-
 describe('heim-setup', () => {
   const debugPrints = false
 
   // node
+  // @ts-error @typescript-eslint/no-explicit-any
   let os = {} as any
 
   let platformSpy: jest.Spied<typeof platform>
@@ -87,9 +89,8 @@ describe('heim-setup', () => {
 
     // @actions/http-client
     getJsonSpy = jest.spyOn(hc.HttpClient.prototype, 'getJson')
-    getJsonSpy.mockImplementation(async (_url) => {
-      let data: any
-      data = <IHeimVersions>dataJson
+    getJsonSpy.mockImplementation(async () => {
+      const data = <IHeimVersions>dataJson
       return <TypedResponse<IHeimVersions>>{
         statusCode: 200,
         result: data
@@ -171,7 +172,7 @@ describe('heim-setup', () => {
 
       await run()
 
-      let major = version.substring(0, version.indexOf('.'))
+      const major = version.substring(0, version.indexOf('.'))
       expect(downloadSpy).toHaveBeenCalledWith(
         `https://cloud.heim.dev/heim/download?file=heim_${version}_x86_64_linux.tar.gz&major=v${major}`
       )
@@ -298,7 +299,7 @@ describe('heim-setup', () => {
       os.arch = 'ppc64'
       const version = '1.1.1'
 
-      let heimDist = new HeimDist(version)
+      const heimDist = new HeimDist(version)
       await expect(heimDist.setupHeim()).rejects.toThrow(
         `Unsupported architecture '${os.arch}'`
       )
@@ -309,7 +310,7 @@ describe('heim-setup', () => {
       os.arch = 'x64'
       const version = 'v01'
 
-      let heimDist = new HeimDist(version)
+      const heimDist = new HeimDist(version)
       getJsonSpy.mockImplementation(async () => {
         return <TypedResponse<IHeimVersions>>{
           statusCode: 404,
@@ -330,7 +331,7 @@ describe('heim-setup', () => {
         throw new HTTPError(404)
       })
 
-      let heimDist = new HeimDist(version)
+      const heimDist = new HeimDist(version)
 
       await expect(heimDist.setupHeim()).rejects.toThrow(
         `Unexpected HTTP response: 404`
@@ -366,8 +367,8 @@ describe('heim-setup', () => {
         const toolPath = path.normalize(`/cache/heim/${expVersion}/${expArch}/`)
         findSpy.mockImplementation(() => toolPath)
 
-        let heimDist = new HeimDist(version)
-        let heimPaths = await heimDist.setupHeim()
+        const heimDist = new HeimDist(version)
+        const heimPaths = await heimDist.setupHeim()
 
         let ext = ''
         if (platform === 'win32') {
@@ -440,10 +441,10 @@ describe('heim-setup', () => {
         )
         cacheDirSpy.mockImplementation(async () => cachePath)
 
-        let heimDist = new HeimDist(version)
-        let heimPaths = await heimDist.setupHeim()
+        const heimDist = new HeimDist(version)
+        const heimPaths = await heimDist.setupHeim()
 
-        let major = expVersion.substring(0, expVersion.indexOf('.'))
+        const major = expVersion.substring(0, expVersion.indexOf('.'))
 
         if (version !== expVersion) {
           expect(getJsonSpy).toHaveBeenCalledWith(

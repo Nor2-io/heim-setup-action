@@ -8,10 +8,10 @@ import { HeimDist } from './dist.js'
  */
 export async function run(): Promise<void> {
   try {
-    let version = core.getInput('version', { required: true })
+    const version = core.getInput('version', { required: true })
 
-    let heimDist = new HeimDist(version)
-    let paths = await heimDist.setupHeim()
+    const heimDist = new HeimDist(version)
+    const paths = await heimDist.setupHeim()
 
     core.setOutput('heimHome', paths.heimHome)
     core.setOutput('bin', paths.heimBin)

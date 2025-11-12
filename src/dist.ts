@@ -47,7 +47,7 @@ export class HeimDist {
   }
 
   public async setupHeim(): Promise<HeimPaths> {
-    let heimInfo = await this.getHeimInfo()
+    const heimInfo = await this.getHeimInfo()
 
     let toolPath = this.findToolInCache(heimInfo)
     if (toolPath) {
@@ -112,7 +112,7 @@ export class HeimDist {
     }
 
     let version: semver.SemVer
-    let inputVersion = this.version
+    const inputVersion = this.version
     if (
       inputVersion === 'current' ||
       inputVersion === 'latest' ||
@@ -130,11 +130,11 @@ export class HeimDist {
       version = semver.parse(inputVersion, false, true)
     }
 
-    let filename = `heim_${version.raw}_${arch}_${platform}`
-    let file: string =
+    const filename = `heim_${version.raw}_${arch}_${platform}`
+    const file: string =
       platform === 'windows' ? `${filename}.zip` : `${filename}.tar.gz`
-    let major = version.major
-    let downloadUrl = `${this.baseUrl}/download?file=${file}&major=v${major}`
+    const major = version.major
+    const downloadUrl = `${this.baseUrl}/download?file=${file}&major=v${major}`
 
     return <HeimInfo>{
       version: version,
@@ -181,13 +181,8 @@ export class HeimDist {
     )
     core.debug(`DownloadUrl: ${info.downloadUrl}`)
 
-    let downloadPath: string
-    try {
-      core.info('Starting download')
-      downloadPath = await tc.downloadTool(info.downloadUrl)
-    } catch (err) {
-      throw err
-    }
+    core.info('Starting download')
+    const downloadPath = await tc.downloadTool(info.downloadUrl)
 
     core.info(`Download path: ${downloadPath}`)
 
