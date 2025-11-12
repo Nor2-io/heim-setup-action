@@ -174,7 +174,7 @@ describe('heim-setup', () => {
 
       const major = version.substring(0, version.indexOf('.'))
       expect(downloadSpy).toHaveBeenCalledWith(
-        `https://cloud.heim.dev/heim/download?file=heim_${version}_x86_64_linux.tar.gz&major=v${major}`
+        `https://cloud.heim.dev/heim/release/download?file=heim_${version}_x86_64_linux.tar.gz&major=v${major}`
       )
 
       expect(setOutputSpy).toHaveBeenNthCalledWith(
@@ -245,7 +245,7 @@ describe('heim-setup', () => {
       await run()
 
       expect(downloadSpy).toHaveBeenCalledWith(
-        `https://cloud.heim.dev/heim/download?file=heim_${version}_x86_64_linux.tar.gz&major=${majorVersion}`
+        `https://cloud.heim.dev/heim/release/download?file=heim_${version}_x86_64_linux.tar.gz&major=${majorVersion}`
       )
 
       expect(setOutputSpy).toHaveBeenNthCalledWith(
@@ -453,7 +453,7 @@ describe('heim-setup', () => {
         }
 
         expect(downloadSpy).toHaveBeenCalledWith(
-          `https://cloud.heim.dev/heim/download?file=heim_${expVersion}_${expArch}_${expPlat}.${downloadExt}&major=v${major}`
+          `https://cloud.heim.dev/heim/release/download?file=heim_${expVersion}_${expArch}_${expPlat}.${downloadExt}&major=v${major}`
         )
         expect(cacheDirSpy).toHaveBeenCalledWith(
           extractPath,
