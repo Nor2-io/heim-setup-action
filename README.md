@@ -1,4 +1,7 @@
-![Heim Logo](/assets/heim.svg)
+<<<<<<< HEAD ![Heim Logo](/assets/heim.svg) =======
+![Heim Logo](assets/heim.svg)
+
+> > > > > > > c59d98da6cf23e85417e53d4fd156330a2b12a52
 
 [\[Getting Started\]](https://cloud.heim.dev/heim/docs/start-here/getting-started/)
 [\[Documentation\]](https://cloud.heim.dev/heim/docs/)
