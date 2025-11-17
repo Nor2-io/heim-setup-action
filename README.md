@@ -1,4 +1,4 @@
-![/assets/heim.svg](Heim Logo)
+![Heim Logo](assets/heim.svg)
 
 [\[Getting Started\]](https://cloud.heim.dev/heim/docs/start-here/getting-started/) [\[Documentation\]](https://cloud.heim.dev/heim/docs/)
 
