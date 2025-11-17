@@ -1,6 +1,7 @@
-![/assets/heim.svg](Heim Logo)
+![Heim Logo](/assets/heim.svg)
 
-[\[Getting Started\]](https://cloud.heim.dev/heim/docs/start-here/getting-started/) [\[Documentation\]](https://cloud.heim.dev/heim/docs/)
+[\[Getting Started\]](https://cloud.heim.dev/heim/docs/start-here/getting-started/)
+[\[Documentation\]](https://cloud.heim.dev/heim/docs/)
 
 # Heim setup
 
@@ -8,6 +9,7 @@ Action to setup heim on a GitHub runner. It also sets the HEIM_HOME variable and
 adds heim to the path.
 
 ## Usage
+
 ```Yaml
 # Latest version
 - name: Setup Heim
